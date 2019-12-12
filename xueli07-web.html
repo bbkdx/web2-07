@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>web2-07</title>
+  <link rel="stylesheet" type="text/css" href="style.css">
+  <script src="animate.js"></script>
+</head>
+<body>
+  <div class="top" id="top">
+    <div class="laba" id="laba">
+      <img src="images/a15.png">
+      <div class="warn" id="warn">
+        <div class="warn1" id="warn1">
+          <span class="warn11" id="warn11">[温馨提示]最近有不少非法分子在网上骗人，请大家注意!!!!</span>
+        </div>
+      </div>
+    </div>
+  <div class="box" id="box">
+    <div class="slider" id="slider">
+      <div class="slide"><img src="images/b5.png" alt=""></div>
+      <div class="slide"><img src="images/b1.png" alt=""></div>
+      <div class="slide"><img src="images/b2.png" alt=""></div>
+      <div class="slide"><img src="images/b3.png" alt=""></div>
+      <div class="slide"><img src="images/b4.png" alt=""></div>
+      <div class="slide"><img src="images/b5.png" alt=""></div>
+      <div class="slide"><img src="images/b1.png" alt=""></div>
+    </div>
+    <span id="left"><</span>
+    <span id="right">></span>
+    <ul class="nav" id="nav">
+      <li class="active">1</li>
+      <li>2</li>
+      <li>3</li>
+      <li>4</li>
+      <li>5</li>
+    </ul>
+  </div>
+</div>
+  <script type="text/javascript">
+    var box=document.getElementById('box');
+    var slider=document.getElementById('slider');
+    var left=document.getElementById('left');
+    var right=document.getElementById('right');
+    var list=document.getElementById('nav').children;
+    var warn=document.getElementById('warn');
+    var warn1=document.getElementById('warn1');
+    var warn11=document.getElementById('warn11');
+    var index=1;
+    var isMoving=false;
+
+    //图片的滑动:轮播到下一张
+    function next(){
+      if(isMoving){
+        return;
+      }
+      isMoving=true;
+      index++;
+      navChange();
+      animate(slider,{left:-1200*index},function(){
+        if(index===6){
+          slider.style.left="-1200px";
+          index=1;
+        }
+        isMoving=false;
+      });
+    }
+
+    //图片的滑动:轮播到上一张
+    function prev(){
+      if(isMoving){
+        return;
+      }
+      isMoving=true;
+      index--;
+      navChange();
+      animate(slider,{left:-1200*index},function(){
+        if(index===0){
+          slider.style.left="-6000px";
+          index=5;
+        }
+        isMoving=false;
+      });
+    }
+    var timer=setInterval(next,3000);
+
+    //鼠标划入清定时器
+    box.onmouseover=function(){
+      animate(left,{opacity:50});
+      animate(right,{opacity:50});
+      clearInterval(timer);
+    }
+
+    //鼠标划出开定时器
+    box.onmouseout=function(){
+      animate(left,{opacity:0});
+      animate(right,{opacity:0});
+      timer=setInterval(next,3000);
+    }
+
+    right.onclick=next;
+    left.onclick=prev;
+
+//小按钮点击事件
+    for(var i=0;i<list.length;i++){
+      list[i].idx=i;
+      list[i].onclick=function(){
+        index=this.idx+1;
+        navChange();
+        animate(slider,{left:-1200*index});
+      }
+    }
+
+    //小按钮背景颜色变换
+    function navChange(){
+      for(var i=0;i<list.length;i++){
+        list[i].className='';
+      }
+      if(index===6){
+        list[0].className='active';
+      }else if(index===0){
+        list[4].className='active';
+      }else{
+        list[index-1].className='active';
+      }
+    }
+    timer=setInterval(next,3000);
+
+    //警告的流动
+
+    warn1.appendChild(warn11.cloneNode(true));
+    function warnScroll(){
+      warn.scrollLeft+=1;
+        if(warn.scrollLeft>=warn11.offsetWidth){
+            warn.scrollLeft=0;
+        }
+    }
+    var scroll=setInterval(warnScroll,15);
+    warn.onmouseover = function(){
+       clearInterval(scroll);
+    }
+    warn.onmouseout = function(){
+        scroll = setInterval(warnScroll,15);
+    }
+  </script>
+</body>
+</html>

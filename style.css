@@ -1,0 +1,97 @@
+
+*{
+	padding: 0;
+	margin: 0;
+}
+ul,li{
+	list-style: none;
+	text-align: center;
+}
+.box{
+	width: 1200px;
+	height: 397px;
+	margin: 20px auto;
+	position:relative;
+	overflow: hidden;
+}
+.slider{
+	width: 8400px;
+	position: absolute;
+	left: -1200px;
+}
+.slide{
+	width: 1200px;
+	overflow: hidden;
+	float: left;
+}
+.box>span{
+	display: block;
+	width: 30px;
+	height: 50px;
+	text-align: center;
+	cursor: pointer;
+	color: #ccc;
+	top: 175px;
+	line-height: 50px;
+	background: rgb(255,0,0);
+	font:-size:30px;
+	position: absolute;
+}
+#left{
+	left: 30px;
+}
+#right{
+	right: 30px;
+}
+.nav{
+	position: absolute;
+	left: 500px;
+	bottom: 20px;
+}
+ .nav>li{
+    float: left;
+    width: 20px;
+    height: 20px;
+    background: #ccc;
+    cursor: pointer;
+    margin: 0 10px;
+    border-radius: 50%;        
+}
+.nav .active{
+    background: red;
+}
+.top{
+	border-left: 2px solid black;
+    border-right: 2px solid black;
+    width:1320px;
+    height: 475px;
+    margin-left: 105px; 
+}
+.laba{
+	width:1320px;
+	height: 19px;
+	margin-left: 0px;
+    background-color: gainsboro;
+    position: relative;
+}
+.laba>img{
+	padding-left: 125px;
+    padding-top: 1px;
+    position:absolute;
+}
+.warn{
+    width:1000px; 
+    overflow:hidden;
+    margin: auto;
+    background-color:gainsboro;
+}
+.warn div{ 
+    width:2500px;
+}
+.warn1 span{
+	width:1250px; 
+	color: red;
+    font-size: small;
+    display:block; 
+    float:left;
+}
